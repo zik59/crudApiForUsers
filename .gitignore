@@ -1,0 +1,14 @@
+# Byte-compiled files
+__pycache__
+
+#env
+.env
+.venv
+env/
+venv/
+
+#migrations
+migrations
+
+# Database
+db.sqlite3

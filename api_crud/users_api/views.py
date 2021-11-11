@@ -5,12 +5,11 @@ from django.contrib.auth.models import User
 from users_api.serializers import ReadOnlyUserSerializer, WriteOnlyUserSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
-    """"API endpoint that allows users to be viewed or created"""
+    """"API endpoint that allows users to be viewed or edited"""
     queryset = User.objects.all()
     serializer_class = ReadOnlyUserSerializer
     
     def create(self, request):
-        print('Obama')
         serializer = WriteOnlyUserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -19,7 +18,6 @@ class UserViewSet(viewsets.ModelViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def update(self, request, pk=None):  
-        print("OBAMA updated")
         serializer = WriteOnlyUserSerializer(data=request.data)              
         if serializer.is_valid():
             serializer.save()
@@ -29,7 +27,6 @@ class UserViewSet(viewsets.ModelViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def partial_update(self, request, pk=None):    
-        print("OBAMA -s Moke")
         serializer = WriteOnlyUserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

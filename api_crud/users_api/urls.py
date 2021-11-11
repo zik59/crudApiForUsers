@@ -1,7 +1,11 @@
-from django.urls import path
-from .views import users_list, crud_for_user
+from django.urls import path, include
+from .views import UserViewSet
+from rest_framework.routers import DefaultRouter
+
+
+router = DefaultRouter()
+router.register(r'users', UserViewSet)
 
 urlpatterns = [
-    path('api/v1/users/', users_list, name='api_v1_users_list_or_create_user'),
-    path('api/v1/users/<int:pk>/', crud_for_user, name='api_v1_users_crud'),
+    path('api/v1/', include(router.urls))
 ]
